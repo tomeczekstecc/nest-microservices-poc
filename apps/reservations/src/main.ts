@@ -14,7 +14,8 @@ async function bootstrap() {
 
   app.useLogger(app.get(Logger));
   await app.listen(PORT, () => {
-    console.log('Reservations has started on port ' + PORT);
+
+    console.log('Reservations has started on port99w2 ' + PORT);
   });
 }
 
