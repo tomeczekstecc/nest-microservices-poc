@@ -15,7 +15,7 @@ async function bootstrap() {
 
   app.useLogger(app.get(Logger));
 
-  await app.listen(PORT, () => console.log('Auh service started o por2t e' + PORT));
+  await app.listen(PORT, () => console.log('Auh service s2tawwd wwe' + PORT));
 }
 
 bootstrap();
