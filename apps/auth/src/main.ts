@@ -9,8 +9,15 @@ import { Transport } from '@nestjs/microservices';
 async function bootstrap() {
 
   const app = await NestFactory.create(AuthModule);
+  const configService = app.get(ConfigService);
+  const HTTP_PORT = configService.get('HTTP_PORT');
 
-  app.connectMicroservice({ transport: Transport.TCP });
+  app.connectMicroservice({
+    transport: Transport.TCP, options: {
+      host: '0.0.0.0',
+      port: configService.get('TCP_PORT'),
+    },
+  });
 
   app.use(cookieParser());
 
@@ -19,15 +26,12 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
   }));
 
-  const configService = app.get(ConfigService);
-
-  const PORT = configService.get('PORT');
 
   app.useLogger(app.get(Logger));
 
-  await app.startAllMicroservices()
+  await app.startAllMicroservices();
 
-  await app.listen(PORT, () => console.log('Auh service s2tawwd wwe' + PORT));
+  await app.listen(HTTP_PORT, () => console.log('Auh service s2tawwd wwe' + HTTP_PORT));
 }
 
 bootstrap();
