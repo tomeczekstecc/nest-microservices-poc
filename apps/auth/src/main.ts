@@ -26,12 +26,11 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
   }));
 
-
   app.useLogger(app.get(Logger));
 
   await app.startAllMicroservices();
 
-  await app.listen(HTTP_PORT, () => console.log('Auh service s2tawwd wwe' + HTTP_PORT));
+  await app.listen(HTTP_PORT, () => console.log('Auth service started on port  ' + HTTP_PORT));
 }
 
 bootstrap();

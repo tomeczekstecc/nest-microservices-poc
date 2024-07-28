@@ -1,25 +1,26 @@
-FROM node:20-alpine AS development
+###################
+# BUILD FOR LOCAL DEVELOPMENT
+###################
 
+FROM node:18-alpine As development
+# Create app directory
 WORKDIR /usr/src/app
 
-COPY package.json ./
-COPY pnpm-lock.yaml ./
+# Copy application dependency manifests to the container image.
+# A wildcard is used to ensure copying both package.json AND package-lock.json (when available).
+# Copying this first prevents re-running npm install on every code change.
+COPY package*.json ./
 
-
-ENV CHOKIDAR_USEPOLLING=true
-
-
+# Install app dependencies using the `npm ci` command instead of `npm install`
 RUN npm install -g pnpm
 
-RUN pnpm install
+RUN pnpm i
 
-COPY . .
+# Bundle app source
+COPY  . .
 
-EXPOSE 3001
 
 RUN pnpm run build
-
-
 
 FROM node:alpine as production
 
