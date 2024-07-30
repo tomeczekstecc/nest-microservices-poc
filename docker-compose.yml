@@ -31,6 +31,22 @@ services:
       - .:/app
       - /usr/src/app/node_modules
 
+  payments:
+    build:
+      context: .
+      dockerfile: ./apps/payments/Dockerfile
+      target: development
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - ./apps/payments/.env
+    command: pnpm run start:dev payments
+    ports:
+      - '3003:3003'
+    volumes:
+      - .:/app
+      - /usr/src/app/node_modules
+
   mongo:
     image: mongo
     restart: always

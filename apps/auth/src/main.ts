@@ -30,7 +30,7 @@ async function bootstrap() {
 
   await app.startAllMicroservices();
 
-  await app.listen(HTTP_PORT, () => console.log('Auth service started on port  ' + HTTP_PORT));
+  await app.listen(HTTP_PORT, () => console.log('Auth service started on port  qsqs' + HTTP_PORT));
 }
 
 bootstrap();
