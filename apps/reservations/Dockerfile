@@ -2,7 +2,7 @@
 # BUILD FOR LOCAL DEVELOPMENT
 ###################
 
-FROM node:20-alpine As development
+FROM node:20-alpine AS development
 # Create app directory
 WORKDIR /usr/src/app
 
@@ -26,7 +26,7 @@ COPY libs libs
 RUN pnpm run build
 
 
-FROM node:alpine as production
+FROM node:alpine AS production
 
 ARG NODE_ENV=production
 
